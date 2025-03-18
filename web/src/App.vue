@@ -1,47 +1,25 @@
 <template>
-  <div>
-    <div>Bots name: {{ bot_name }}</div>
-    <div>Ranking: {{ bot_ranking }}</div>
-  </div>
+  <NavBar />
+  <!--Use @/router/index.js to find the path-->
   <router-view/>
 </template>
 
 <script> 
-// use jquery to get info from backend
-import $ from 'jquery';
-// declare variables
-import { ref } from 'vue';
-
+/* import NavBar from components */
+import NavBar from '@/components/NavBar.vue'
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap"
 
 export default {
-  name: "App",
-  setup: () => {
-    let bot_name = ref("");
-    let bot_ranking = ref("");
-    // Use .ajax to retrieve the funcitons endpoint URL
-    $.ajax({
-      url: "http://127.0.0.1:3000/pk/getBotInfo/",
-      type: "get",
-
-      success: resp => {
-        // console.log(resp);
-        // the name have to match to the backend
-        bot_name.value = resp.name;
-        bot_ranking.value = resp.ranking;
-      }
-    });
-
-    return {
-      bot_name,
-      bot_ranking
-    }
+  components: {
+    NavBar
   }
 }
 </script>
 
 <style>
 body {
-  background-image: url("@/assets/seattle.jpg");
+  background-image: url("@/assets/images/seattle.jpg");
   background-size: cover;
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents tiling */
