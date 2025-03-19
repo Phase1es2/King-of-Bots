@@ -1,7 +1,7 @@
 /*
  * @Author: Hao Yang
  * @Date: 2025-03-18 12:16:39
- * @LastEditTime: 2025-03-18 12:39:14
+ * @LastEditTime: 2025-03-19 10:49:11
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/assets/scripts/GameObject.js
@@ -13,7 +13,7 @@ const GAME_OBJECTS = [];
 export class GameObject {
     constructor() {
         GAME_OBJECTS.push(this);
-        this.timedelta = 0;
+        this.timedelta = 0; //use to track time between to frame
         this.has_called_start = false;
     }
 

@@ -1,7 +1,7 @@
 <!--
  * @Author: Hao Yang
  * @Date: 2025-03-18 12:42:04
- * @LastEditTime: 2025-03-18 13:46:40
+ * @LastEditTime: 2025-03-19 11:10:09
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/components/GameMap.vue
@@ -9,7 +9,8 @@
 
 <template>    
     <div ref="parent" class="gamemap">
-        <canvas ref="canvas">
+        <!--Let the canvas caputre user's actions add tabindex-->
+        <canvas ref="canvas" tabindex="0">
             
         </canvas>
     </div>
