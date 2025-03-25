@@ -1,4 +1,4 @@
-package com.kob.backend.controller.user;
+/*package com.kob.backend.controller.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kob.backend.mapper.UserMapper;
@@ -55,7 +55,7 @@ public class UserController {
         */
 
         // change the password to encoded password and store it in database
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+/*        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(password);
 
         User user = new User(userId, username, encodedPassword);
@@ -89,7 +89,8 @@ public class UserController {
                 specialCharacter++;
             }
         }
-        return lowercase > 0 && uppercase > 0 && digit > 0 && specialCharacter > 0 ? true : false;
+        return lowercase > 0 && uppercase > 0 && digit > 0 && specialCharacter > 0;
     }
 
 }
+*/

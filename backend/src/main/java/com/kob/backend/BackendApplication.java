@@ -6,7 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-@MapperScan
+// @MapperScan
+/*
+You probably accidentally put LoginService in a package that is scanned by MyBatis
+as a Mapper (like @MapperScan("com.kob.backend.service")), which causes MyBatis
+to try to treat it as a mapper interface.
+* */
 public class BackendApplication {
 
     public static void main(String[] args) {
