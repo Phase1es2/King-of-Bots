@@ -1,7 +1,7 @@
 /*
  * @Author: Hao Yang
  * @Date: 2025-03-25 13:34:08
- * @LastEditTime: 2025-03-25 14:40:04
+ * @LastEditTime: 2025-03-26 12:20:41
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/store/user.js
@@ -15,6 +15,7 @@ export default {
         photo: "",
         token: "",
         is_login: false,
+        load_info: true,
     },
     getters: {
     },
@@ -34,6 +35,9 @@ export default {
             state.photo = "";
             state.token = "";
             state.is_login = false;
+        },
+        updateLoadingInfo(state, load_info){
+            state.load_info = load_info
         }
     },
     // if we want to change state, we sue actions
@@ -49,6 +53,8 @@ export default {
                 success(resp) {
                     // if we want to use mutations' function in actions, we need to use commit("string")
                     if (resp.error_message === "success") {
+                        // Persistent login, keep the token in the local storage.
+                        localStorage.setItem("jwt_token", resp.token);
                         context.commit("updateToken", resp.token);
                         data.success(resp);
                     } else {
@@ -87,6 +93,7 @@ export default {
             });
         },
         logout(context) {
+            localStorage.removeItem("jwt_token");
             context.commit("logout");
         }
     },

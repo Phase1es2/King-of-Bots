@@ -1,13 +1,13 @@
 <!--
  * @Author: Hao Yang
  * @Date: 2025-03-25 13:17:47
- * @LastEditTime: 2025-03-25 14:26:35
+ * @LastEditTime: 2025-03-26 12:37:15
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/views/user/account/UserAccountLogin.vue
 -->
 <template>
-    <ContentField>
+    <ContentField v-if="!$store.state.user.load_info">
         <div class="row justify-content-md-center">
             <div class="col-3">
                 <form @submit.prevent="login">
@@ -45,6 +45,32 @@ export default {
         let password = ref('');
         let error_message = ref('');
 
+        /*
+            F5 refresh will jump to login page,
+            1. it will check the jwt_token in the localStorage
+            2. if there is token, update token,
+            3. request the user's info in the cloud
+            4. if there is a user info mean the token is correcta and logined
+            4. jump to home page
+        */
+        const jwt_token = localStorage.getItem("jwt_token");
+
+        if (jwt_token) {
+            store.commit("updateToken", jwt_token);
+            store.dispatch("getinfo", {
+                success() {
+                    router.push({name : "home"});
+                    store.commit("updateLoadingInfo", false);
+                },
+                error() {
+                    store.commit("updateLoadingInfo", false);
+                    // console.log(store.state.load_info);
+                },
+            })
+        } else {
+            store.commit("updateLoadingInfo", false);
+        }
+
         const login = () => {
             // if we want to use actions' funciton, use dispatch;
             error_message.value = "";
@@ -56,7 +82,7 @@ export default {
                     store.dispatch("getinfo", {
                         success() {
                             router.push({ name: 'home' });
-                            console.log(store.state.user);
+                            // console.log(store.state.user);
                         }
                     })
                 },

@@ -1,7 +1,7 @@
 <!--
  * @Author: Hao Yang
  * @Date: 2025-03-18 10:42:45
- * @LastEditTime: 2025-03-25 14:41:57
+ * @LastEditTime: 2025-03-26 12:35:04
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/components/NavBar.vue
@@ -41,7 +41,7 @@
             </ul>
         </li>
       </ul>
-      <ul class="navbar-nav ms-3" v-else>  <!-- Adjusts left margin -->
+      <ul class="navbar-nav ms-3" v-else-if="!$store.state.user.load_info">  <!-- Adjusts left margin -->
         <li class="nav-item">
             <router-link class="nav-link" :to="{name: 'user_account_login'}" role="button">
             Login
