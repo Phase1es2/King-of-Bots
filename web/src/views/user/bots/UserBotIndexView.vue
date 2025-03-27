@@ -1,7 +1,7 @@
 <!--
  * @Author: Hao Yang
  * @Date: 2025-03-18 11:11:44
- * @LastEditTime: 2025-03-27 12:09:32
+ * @LastEditTime: 2025-03-27 12:26:22
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/views/user/UserBotIndexView.vue
@@ -48,7 +48,7 @@ export default {
                 url: "http://127.0.0.1:3000/user/bot/remove/",
                 type: "post",
                 data: {
-                    bot_id: 9,
+                    bot_id: 8,
                 },
                 headers: {
                     Authorization: "Bearer " + store.state.user.token,
@@ -82,7 +82,7 @@ export default {
                 }
             }) 
                 */
-           /*
+           
             $.ajax({
                 url: "http://127.0.0.1:3000/user/bot/getlist/",
                 type: "get",
@@ -95,8 +95,24 @@ export default {
                 error(resp) {
                     console.log(resp);
                 }
-            })
+            }) 
+/*
+            $.ajax({
+                url: "http://127.0.0.1:3000/user/bot/getlist/deleted/",
+                type: "get",
+                headers: {
+                    Authorization: "Bearer " + store.state.user.token,
+                },
+                success(resp) {
+                    console.log(resp);
+                },
+                error(resp) {
+                    console.log(resp);
+                }
+            })  
         */
+        
+       /*
         $.ajax({
                 url: "http://127.0.0.1:3000/user/bot/restore/",
                 type: "post",
@@ -112,7 +128,7 @@ export default {
                 error(resp) {
                     console.log(resp);
                 }
-            })
+            })*/
     }
 }
 </script>

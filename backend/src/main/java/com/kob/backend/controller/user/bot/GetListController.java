@@ -18,4 +18,43 @@ public class GetListController {
     public List<Bot> getList() {
         return getListService.getList();
     }
+
+    /*
+
+            $.ajax({
+                url: "http://127.0.0.1:3000/user/bot/getlist/",
+                type: "get",
+                headers: {
+                    Authorization: "Bearer " + store.state.user.token,
+                },
+                success(resp) {
+                    console.log(resp);
+                },
+                error(resp) {
+                    console.log(resp);
+                }
+            })
+     */
+
+    @GetMapping("/user/bot/getlist/deleted/")
+    public List<Bot> getDeletedList() {
+        return getListService.getDeletedList();
+    }
+
+    /*
+
+            $.ajax({
+                url: "http://127.0.0.1:3000/user/bot/getlist/deleted/",
+                type: "get",
+                headers: {
+                    Authorization: "Bearer " + store.state.user.token,
+                },
+                success(resp) {
+                    console.log(resp);
+                },
+                error(resp) {
+                    console.log(resp);
+                }
+            })
+     */
 }

@@ -20,7 +20,19 @@ public class GetListServiceImpl implements GetListService {
         User user = UserUtil.getLoginUser();
 
         QueryWrapper<Bot> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("user_id", user.getId());
+        queryWrapper.eq("user_id", user.getId())
+                .eq("is_deleted", false);
+
+        return botMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public List<Bot> getDeletedList() {
+        User user = UserUtil.getLoginUser();
+
+        QueryWrapper<Bot> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", user.getId())
+                .eq("is_deleted", true);
 
         return botMapper.selectList(queryWrapper);
     }
