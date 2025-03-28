@@ -49,7 +49,7 @@ public class RestoreServiceImpl implements RestoreService {
                 false
         );
         botMapper.updateById(new_bot);
-        map.put("error_message", "restore success");
+        map.put("error_message", "success");
 
         return map;
     }
