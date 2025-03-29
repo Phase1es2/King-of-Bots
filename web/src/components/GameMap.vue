@@ -1,7 +1,7 @@
 <!--
  * @Author: Hao Yang
  * @Date: 2025-03-18 12:42:04
- * @LastEditTime: 2025-03-19 11:10:09
+ * @LastEditTime: 2025-03-29 11:51:34
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/components/GameMap.vue
@@ -19,14 +19,16 @@
 <script> 
 import { GameMap } from '@/assets/scripts/GameMap';
 import { ref, onMounted } from 'vue';
+import { useStore } from 'vuex';
 
 export default{
     setup() {
+        const store = useStore();
         let parent = ref(null);
         let canvas = ref(null);
 
         onMounted(() => {
-            new GameMap(canvas.value.getContext('2d'), parent.value)
+            new GameMap(canvas.value.getContext('2d'), parent.value, store)
         });
 
         return {

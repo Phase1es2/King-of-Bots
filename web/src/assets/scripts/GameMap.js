@@ -1,7 +1,7 @@
 /*
  * @Author: Hao Yang
  * @Date: 2025-03-18 12:29:38
- * @LastEditTime: 2025-03-27 21:21:49
+ * @LastEditTime: 2025-03-29 11:54:34
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/assets/scripts/GameMap.js
@@ -13,11 +13,12 @@ import { Wall } from "./Wall";
 
 export class GameMap extends GameObject {
     // canvas and parents, dynamic render the canvas;
-    constructor(ctx, parent) {
+    constructor(ctx, parent, store) {
         super();
 
         this.ctx = ctx;
         this.parent = parent;
+        this.store = store;
         // absolute distance
         this.L = 0;
         this.rows = 13;
@@ -32,20 +33,24 @@ export class GameMap extends GameObject {
         ];
     }
 
-    check_connect(g, sx, sy, tx, ty) {
-        if (sx == tx && sy == ty) return true;
-        g[sx][sy] = true;
-
-        let dx = [-1, 0, 1, 0], dy = [0, 1, 0 - 1];
-        for (let i = 0; i < 4; i++) {
-            let x = sx + dx[i], y = sy + dy[i];
-            if (!g[x][y] && this.check_connect(g, x, y, tx, ty))
-                return true;
+    /* create map at backend
+        check_connect(g, sx, sy, tx, ty) {
+            if (sx == tx && sy == ty) return true;
+            g[sx][sy] = true;
+    
+            let dx = [-1, 0, 1, 0], dy = [0, 1, 0 - 1];
+            for (let i = 0; i < 4; i++) {
+                let x = sx + dx[i], y = sy + dy[i];
+                if (!g[x][y] && this.check_connect(g, x, y, tx, ty))
+                    return true;
+            }
+            return false;
         }
-        return false;
-    }
+    */
+
 
     create_walls() {
+        /*
         const g = [];
         for (let r = 0; r < this.rows; r++) {
             g[r] = [];
@@ -80,7 +85,8 @@ export class GameMap extends GameObject {
         // transfer it to JOSN, and Parse JSON out.
         const copy_g = JSON.parse(JSON.stringify(g));
         if (!this.check_connect(copy_g, this.rows - 2, 1, 1, this.cols - 2)) return false;
-
+        */
+       const g = this.store.state.pk.gamemap;
         for (let r = 0; r < this.rows; r++) {
             for (let c = 0; c < this.cols; c++) {
                 if (g[r][c]) {
@@ -88,7 +94,7 @@ export class GameMap extends GameObject {
                 }
             }
         }
-        return true;
+        // return true;
     }
 
     // use to add listening events for user's input
@@ -112,9 +118,10 @@ export class GameMap extends GameObject {
 
 
     start() {
-        for (let i = 0; i < 1000; i++)
-            if (this.create_walls())
-                break;
+        /*  for (let i = 0; i < 1000; i++)
+               if (this.create_walls())
+                   break; */
+        this.create_walls();
 
         this.add_listening_events();
     }
