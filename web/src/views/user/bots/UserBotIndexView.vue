@@ -1,7 +1,7 @@
 <!--
  * @Author: Hao Yang
  * @Date: 2025-03-18 11:11:44
- * @LastEditTime: 2025-03-28 13:04:44
+ * @LastEditTime: 2025-03-29 12:15:08
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/views/user/UserBotIndexView.vue
@@ -356,7 +356,50 @@ export default {
 </script>
 
 <style scoped>
+.card {
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+img.user-photo {
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.card-body table th {
+    font-size: 110%;
+    color: #495057;
+}
+
+.card-body table td {
+    vertical-align: middle;
+}
+
+.modal-header {
+    background-color: #f1f3f5;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+textarea, input {
+    border-radius: 0.5rem;
+}
+
 div.error-message {
-    color: red;
+    color: #dc3545;
+    font-weight: 500;
+}
+
+.btn + .btn {
+    margin-left: 0.5rem;
 }
 </style>

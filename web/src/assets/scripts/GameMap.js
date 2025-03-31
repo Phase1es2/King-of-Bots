@@ -1,7 +1,7 @@
 /*
  * @Author: Hao Yang
  * @Date: 2025-03-18 12:29:38
- * @LastEditTime: 2025-03-29 11:54:34
+ * @LastEditTime: 2025-03-31 17:57:51
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/assets/scripts/GameMap.js
@@ -101,17 +101,29 @@ export class GameMap extends GameObject {
     add_listening_events() {
         this.ctx.canvas.focus();
 
-        const [snake0, snake1] = this.snakes;
+        //const [snake0, snake1] = this.snakes;
         this.ctx.canvas.addEventListener("keydown", e => {
-            console.log("keydonw", e.key);
-            if (e.key === 'w') snake0.set_direction(0);
-            else if (e.key === 'd') snake0.set_direction(1);
-            else if (e.key === 's') snake0.set_direction(2);
-            else if (e.key === 'a') snake0.set_direction(3);
-            else if (e.key === 'ArrowUp') snake1.set_direction(0);
-            else if (e.key === 'ArrowRight') snake1.set_direction(1);
-            else if (e.key === 'ArrowDown') snake1.set_direction(2);
-            else if (e.key === 'ArrowLeft') snake1.set_direction(3);
+            // console.log("keydonw", e.key);
+            let d = -1;
+            if (e.key === 'w') d = 0;
+            else if (e.key === 'd') d = 1;
+            else if (e.key === 's') d = 2;
+            else if (e.key === 'a') d = 3;
+
+            if (d >= 0) {
+                this.store.state.pk.socket.send(JSON.stringify({
+                    event: "move",
+                    direction: d,
+                }));
+            }
+            // if (e.key === 'w') snake0.set_direction(0);
+            // else if (e.key === 'd') snake0.set_direction(1);
+            // else if (e.key === 's') snake0.set_direction(2);
+            // else if (e.key === 'a') snake0.set_direction(3);
+           // else if (e.key === 'ArrowUp') snake1.set_direction(0);
+           // else if (e.key === 'ArrowRight') snake1.set_direction(1);
+           // else if (e.key === 'ArrowDown') snake1.set_direction(2);
+           // else if (e.key === 'ArrowLeft') snake1.set_direction(3);
         });
 
     }
@@ -159,6 +171,7 @@ export class GameMap extends GameObject {
 
     // When the tail did not increase
     // we do not need to check tail
+    
     check_valid(cell) {
         for (const wall of this.walls) {
             if (wall.r === cell.r && wall.c === cell.c)

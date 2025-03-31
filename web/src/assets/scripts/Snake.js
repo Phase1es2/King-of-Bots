@@ -1,7 +1,7 @@
 /*
  * @Author: Hao Yang
  * @Date: 2025-03-19 10:35:59
- * @LastEditTime: 2025-03-19 13:58:59
+ * @LastEditTime: 2025-03-31 17:58:37
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/assets/scripts/snake.js
@@ -90,11 +90,12 @@ export class Snake extends GameObject {
      * in the first 10 step, we will increase the tail
      * after 10 steps, every other 3 steps, we increase the tail.
      */
+    
     check_tail_increasing() {
         if (this.step <= 10) return true;
         if (this.step % 3 === 1) return true;
         return false; 
-    }
+    } 
 
     // update status of snake, move to next direction
     next_step() {
@@ -112,9 +113,10 @@ export class Snake extends GameObject {
         }
 
         //invalid move
+        /* move to backend
         if (!this.gamemap.check_valid(this.next_cell)) {
             this.status = "die";
-        }
+        } */
     }
 
 

@@ -1,7 +1,7 @@
 <!--
  * @Author: Hao Yang
  * @Date: 2025-03-18 12:42:04
- * @LastEditTime: 2025-03-29 11:51:34
+ * @LastEditTime: 2025-03-31 11:24:11
  * @LastEditors: MacBookPro
  * @Description: In User Settings Edit
  * @FilePath: /Java Final Project/web/src/components/GameMap.vue
@@ -28,7 +28,10 @@ export default{
         let canvas = ref(null);
 
         onMounted(() => {
-            new GameMap(canvas.value.getContext('2d'), parent.value, store)
+            store.commit(
+                "updateGameObject", 
+                new GameMap(canvas.value.getContext('2d'), parent.value, store)
+            );
         });
 
         return {
